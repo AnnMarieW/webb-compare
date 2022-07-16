@@ -21,3 +21,11 @@ The advantage with using the `pages` feature that it automatically creates the m
 nicely formatted cards when the link is shared.  It also automatically updates the title for each page.
 For more information on multi-page dash apps, see the [Plotly Dash docs](https://dash.plotly.com/urls)
 
+
+### Dash app with dash-boostrap-components
+
+![webb](https://user-images.githubusercontent.com/72614349/179326884-a9a01fef-6f64-4de0-a40f-b206f3a99ff8.gif)
+
+### Dash app with dash-mantine-components
+
+![web_dmc](https://user-images.githubusercontent.com/72614349/179326881-bab05723-0560-4bc7-9bbb-1ec5869cfac2.gif)

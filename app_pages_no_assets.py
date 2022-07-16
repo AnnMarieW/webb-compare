@@ -19,7 +19,7 @@ webb_southern_nebula = "https://user-images.githubusercontent.com/72614349/17911
 webb_carina = "https://user-images.githubusercontent.com/72614349/179115673-15eaccb9-d17d-4667-84fb-e0a46fd444e8.jpg"
 article = "https://bigthink.com/starts-with-a-bang/before-and-after-james-webb/"
 github_web_compare="https://github.com/JohnEdChristensen/WebbCompare"
-github_amw=""
+github_amw="https://github.com/AnnMarieW/webb-compare"
 
 
 app = Dash(__name__, use_pages=True, pages_folder="", external_stylesheets=[dbc.themes.CYBORG, dbc.icons.BOOTSTRAP])

@@ -11,7 +11,7 @@ webb_deep_field = "https://user-images.githubusercontent.com/72614349/179115668-
 webb_southern_nebula = "https://user-images.githubusercontent.com/72614349/179115670-ef5bc561-d957-4e88-82dc-53ca53541b04.jpg"
 webb_carina = "https://user-images.githubusercontent.com/72614349/179115673-15eaccb9-d17d-4667-84fb-e0a46fd444e8.jpg"
 article = "https://bigthink.com/starts-with-a-bang/before-and-after-james-webb/"
-github="https://github.com/JohnEdChristensen/WebbCompare"
+github="https://github.com/AnnMarieW/webb-compare"
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG, dbc.icons.BOOTSTRAP])
@@ -23,7 +23,7 @@ header = html.Div(
         html.P("First Images -- Before and After -- Hubble vs Webb"),
         dbc.Button("Article", color="light", outline=True, href=article),
         dbc.Button(
-            [html.I(className="bi bi-github m-2"), "Images source"],
+            [html.I(className="bi bi-github m-2"), "source code"],
             color="light",  outline=True, className="mb-2", href=github
         ),
     ],

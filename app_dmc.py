@@ -13,7 +13,7 @@ webb_deep_field = "https://user-images.githubusercontent.com/72614349/179115668-
 webb_southern_nebula = "https://user-images.githubusercontent.com/72614349/179115670-ef5bc561-d957-4e88-82dc-53ca53541b04.jpg"
 webb_carina = "https://user-images.githubusercontent.com/72614349/179115673-15eaccb9-d17d-4667-84fb-e0a46fd444e8.jpg"
 article = "https://bigthink.com/starts-with-a-bang/before-and-after-james-webb/"
-github="https://github.com/JohnEdChristensen/WebbCompare"
+github="https://github.com/AnnMarieW/webb-compare"
 
 
 app = Dash(__name__)
@@ -42,7 +42,7 @@ header = html.Div(
         dmc.Title("James Webb Space Telescope", order=1),
         dmc.Space(h="md"),
         dmc.Text("First Images -- Before and After -- Hubble vs Webb"),
-        dmc.Group([make_link("bi:book","article", article), make_link("bi-github", "image source", article)]),
+        dmc.Group([make_link("bi:book","article", article), make_link("bi-github", "source code", article)]),
         dmc.Space(h="xl"),
     ],
 )
