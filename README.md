@@ -1,6 +1,10 @@
 # Dash Webb Compare
 
-This project was inspired by [WebbCompare](https://github.com/JohnEdChristensen/WebbCompare) and all of the images
+See the app live at https://dash-webb-compare.herokuapp.com/
+
+https://dash-webb-compare.herokuapp.com/
+
+This project was inspired by [WebbCompare](https://github.com/JohnEdChristensen/WebbCompare) and all the images
 displayed are sourced from that project.  Thank you @JohnEdChristensen
 
 There are __4 versions of the same app__ to demonstrate different features of Plotly Dash and community Dash components libraries.
@@ -32,3 +36,12 @@ For more information on multi-page dash apps, see the [Plotly Dash docs](https:/
 ### Dash app with dash-mantine-components
 
 ![web_dmc](https://user-images.githubusercontent.com/72614349/179326881-bab05723-0560-4bc7-9bbb-1ec5869cfac2.gif)
+
+
+### This app was deployed using [dash-tools](https://github.com/andrew-hossack/dash-tools)  
+
+DashTools is an open-source command line toolchain for Plotly Dash that makes creating and deploying dash projects to Heroku intuitive and easy.  
+
+Thanks @andrew-hossack for providing such an awesome tool.  It truly makes deploying an app a piece of cake.  :cake:
+
+
