@@ -10,21 +10,28 @@ southern_nebula = "https://user-images.githubusercontent.com/72614349/179115666-
 webb_deep_field = "https://user-images.githubusercontent.com/72614349/179115668-2630e3e4-3a9f-4c88-9494-3412e606450a.jpg"
 webb_southern_nebula = "https://user-images.githubusercontent.com/72614349/179115670-ef5bc561-d957-4e88-82dc-53ca53541b04.jpg"
 webb_carina = "https://user-images.githubusercontent.com/72614349/179115673-15eaccb9-d17d-4667-84fb-e0a46fd444e8.jpg"
-article = "https://bigthink.com/starts-with-a-bang/before-and-after-james-webb/"
-github="https://github.com/AnnMarieW/webb-compare"
+article = "https://webbtelescope.org/news/first-images/gallery"
+github_amw = "https://github.com/AnnMarieW/webb-compare"
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG, dbc.icons.BOOTSTRAP])
-app.title="Webb-before-after"
+app.title = "Webb-before-after"
 
 header = html.Div(
     [
         html.H2("James Webb Space Telescope", className="display-3"),
-        html.P("First Images -- Before and After -- Hubble vs Webb"),
-        dbc.Button("Article", color="light", outline=True, href=article),
+        html.Div("First Images.  Compare before and after images of Hubble vs Webb."),
         dbc.Button(
-            [html.I(className="bi bi-github m-2"), "source code"],
-            color="light",  outline=True, className="mb-2", href=github
+            [html.I(className="bi bi-book me-2"), "webbtelescope.org"],
+            color="light",
+            href=article,
+            className="text-white-50",
+        ),
+        dbc.Button(
+            [html.I(className="bi bi-github me-2"), "source code"],
+            color="light",
+            className="ms-2 text-white-50",
+            href=github_amw,
         ),
     ],
 )
@@ -46,12 +53,12 @@ def make_before_after(before, after):
 
 tabs = dbc.Tabs(
     [
-        dbc.Tab(make_before_after( webb_deep_field, deep_field,), label="Galaxy Cluster SMACS 0723"),
-        dbc.Tab(make_before_after( webb_stephans_quintet,stephans_quintet,),label="Stephans Quintet"),
+        dbc.Tab(make_before_after(webb_deep_field,deep_field), label="Galaxy Cluster SMACS 0723"),
+        dbc.Tab(make_before_after(webb_stephans_quintet, stephans_quintet), label="Stephans Quintet"),
         dbc.Tab(make_before_after(webb_carina, carina), label="Carina Nebula"),
         dbc.Tab(make_before_after(webb_southern_nebula, southern_nebula), label="Southern Ring Nebula"),
     ],
-    className="mt-4",
+    className="mt-5",
 )
 
 app.layout = dbc.Container([header, tabs])

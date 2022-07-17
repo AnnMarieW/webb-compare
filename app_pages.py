@@ -8,12 +8,6 @@ from dash import Dash, html
 from dash_extensions import BeforeAfter
 import dash_bootstrap_components as dbc
 
-
-article = "https://bigthink.com/starts-with-a-bang/before-and-after-james-webb/"
-github_web_compare = "https://github.com/JohnEdChristensen/WebbCompare"
-github_amw = ""
-
-
 app = Dash(
     __name__,
     use_pages=True,
@@ -39,19 +33,22 @@ def make_before_after(before, after):
 descr = "James Webb Space Telescope First Images. Compare before and after images of Hubble vs Webb.  This app is made with Plotly Dash"
 
 dash.register_page(
-    "webb_deep_field",
-    name="Galaxy Cluster SMACS 0723",
-    description=descr,
-    layout=make_before_after("/assets/webb_deep_field.jpg", "/assets/deep_field/jpg"),
-    path="/",
-)
-dash.register_page(
     "webb_stephans_quintet",
+    name="Stephans Quintet",
     description=descr,
     layout=make_before_after(
         "/assets/webb_stephans_quintet.jpg", "/assets/stephans_quintet.jpg"
     ),
 )
+
+dash.register_page(
+    "webb_deep_field",
+    name="Galaxy Cluster SMACS 0723",
+    description=descr,
+    layout=make_before_after("/assets/webb_deep_field.jpg", "/assets/deep_field.jpg"),
+    path="/",
+)
+
 dash.register_page(
     "webb_carina",
     name="Carina Nebula",
@@ -60,7 +57,7 @@ dash.register_page(
 )
 dash.register_page(
     "webb_southern_ring",
-    name="Sounther Ring Nebula",
+    name="Southern Ring Nebula",
     description=descr,
     layout=make_before_after(
         "/assets/webb_southern_nebula.jpg", "/assets/southern_nebula.jpg"
@@ -70,44 +67,34 @@ dash.register_page(
 header = html.Div(
     [
         html.H2("James Webb Space Telescope", className="display-3"),
-        html.P(
-            "First Images.  Compare before and after images of Hubble vs Webb."
-        ),
-        dbc.Button("Article", color="light", outline=True, href=article),
+        html.Div("First Images.  Compare before and after images of Hubble vs Webb."),
         dbc.Button(
-            [html.I(className="bi bi-github m-2"), "Images Source"],
-            color="light",
-            outline=True,
-            className="ms-2",
-            href=github_web_compare,
+            [html.I(className="bi bi-book me-2"), "webbtelescope.org"],
+            color="light", className="text-white-50",
+            href="https://webbtelescope.org/news/first-images/gallery",
+
         ),
         dbc.Button(
-            [html.I(className="bi bi-github m-2"), "Source Code"],
-            color="light",
-            outline=True,
-            className="ms-2",
-            href=github_amw,
+            [html.I(className="bi bi-github me-2"), "source code"],
+            color="light", className="ms-2 text-white-50",
+            href="https://github.com/AnnMarieW/webb-compare",
         ),
     ],
 )
 
 
 def navbar():
-    return html.Div(
-        dbc.Nav(
-            [
-                dbc.NavLink(
-                    [
-                        html.Div(page["name"], className="ms-2"),
-                    ],
-                    href=page["path"],
-                    active="exact",
-                )
-                for page in dash.page_registry.values()
-            ],
-            pills=True,
-            className="mt-5",
-        )
+    return dbc.Nav(
+        [
+            dbc.NavLink(
+                html.Div(page["name"], className="ms-2"),
+                href=page["path"],
+                active="exact",
+            )
+            for page in dash.page_registry.values()
+        ],
+        pills=True,
+        className="mt-5",
     )
 
 

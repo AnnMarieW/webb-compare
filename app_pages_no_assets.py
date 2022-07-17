@@ -17,12 +17,17 @@ southern_nebula = "https://user-images.githubusercontent.com/72614349/179115666-
 webb_deep_field = "https://user-images.githubusercontent.com/72614349/179115668-2630e3e4-3a9f-4c88-9494-3412e606450a.jpg"
 webb_southern_nebula = "https://user-images.githubusercontent.com/72614349/179115670-ef5bc561-d957-4e88-82dc-53ca53541b04.jpg"
 webb_carina = "https://user-images.githubusercontent.com/72614349/179115673-15eaccb9-d17d-4667-84fb-e0a46fd444e8.jpg"
-article = "https://bigthink.com/starts-with-a-bang/before-and-after-james-webb/"
-github_web_compare="https://github.com/JohnEdChristensen/WebbCompare"
-github_amw="https://github.com/AnnMarieW/webb-compare"
+article = "https://webbtelescope.org/news/first-images/gallery"
+github_web_compare = "https://github.com/JohnEdChristensen/WebbCompare"
+github_amw = "https://github.com/AnnMarieW/webb-compare"
 
 
-app = Dash(__name__, use_pages=True, pages_folder="", external_stylesheets=[dbc.themes.CYBORG, dbc.icons.BOOTSTRAP])
+app = Dash(
+    __name__,
+    use_pages=True,
+    pages_folder="",
+    external_stylesheets=[dbc.themes.CYBORG, dbc.icons.BOOTSTRAP],
+)
 
 
 def make_before_after(before, after):
@@ -38,49 +43,75 @@ def make_before_after(before, after):
         style={"marginTop": 50},
     )
 
+
 descr = """James Webb Space Telescope First Images. Compare before and after images of Hubble vs Webb.  This app is made with Plotly Dash"""
 
-dash.register_page("Galaxy Cluster SMACS 0723", description=descr, image_url=webb_deep_field, layout=make_before_after( webb_deep_field, deep_field,), path="/")
-dash.register_page("stephans_quintet", description=descr, image_url=webb_stephans_quintet, layout=make_before_after( webb_stephans_quintet,stephans_quintet,))
-dash.register_page("carina_nebula", description=descr, image_url=webb_carina, layout=make_before_after(webb_carina, carina))
-dash.register_page("southern_ring_nebula",description=descr, image_url=webb_carina, layout= make_before_after(webb_southern_nebula, southern_nebula))
+dash.register_page(
+    "Galaxy Cluster SMACS 0723",
+    description=descr,
+    image_url=webb_deep_field,
+    layout=make_before_after(
+        webb_deep_field,
+        deep_field,
+    ),
+    path="/",
+)
+dash.register_page(
+    "stephans_quintet",
+    description=descr,
+    image_url=webb_stephans_quintet,
+    layout=make_before_after(
+        webb_stephans_quintet,
+        stephans_quintet,
+    ),
+)
+dash.register_page(
+    "carina_nebula",
+    description=descr,
+    image_url=webb_carina,
+    layout=make_before_after(webb_carina, carina),
+)
+dash.register_page(
+    "southern_ring_nebula",
+    description=descr,
+    image_url=webb_carina,
+    layout=make_before_after(webb_southern_nebula, southern_nebula),
+)
 
 
 header = html.Div(
     [
         html.H2("James Webb Space Telescope", className="display-3"),
-        html.P("First Images.  Compare before and after images of Hubble vs Webb.  This app is made with"),
-        dbc.Button("Article", color="light", outline=True, href=article),
+        html.Div("First Images.  Compare before and after images of Hubble vs Webb."),
         dbc.Button(
-            [html.I(className="bi bi-github m-2"), "Images Source"],
-            color="light",  outline=True, className="ms-2", href=github_web_compare
+            [html.I(className="bi bi-book me-2"), "webbtelescope.org"],
+            color="light",
+            href=article,
+            className="text-white-50",
         ),
         dbc.Button(
-            [html.I(className="bi bi-github m-2"), "Source Code"],
-            color="light",  outline=True, className="ms-2", href=github_amw
+            [html.I(className="bi bi-github me-2"), "source code"],
+            color="light",
+            className="ms-2 text-white-50",
+            href=github_amw,
         ),
     ],
 )
 
 
 def navbar():
-    return html.Div(
-        dbc.Nav(
-            [
-                dbc.NavLink(
-                    [
-                        html.Div(page["name"], className="ms-2"),
-                    ],
-                    href=page["path"],
-                    active="exact",
-                )
-                for page in dash.page_registry.values()
-            ],
-            pills=True,
-            className="mt-5",
-        )
+    return dbc.Nav(
+        [
+            dbc.NavLink(
+                html.Div(page["name"], className="ms-2"),
+                href=page["path"],
+                active="exact",
+            )
+            for page in dash.page_registry.values()
+        ],
+        pills=True,
+        className="mt-5",
     )
-
 
 app.layout = dbc.Container([header, navbar(), dash.page_container])
 
