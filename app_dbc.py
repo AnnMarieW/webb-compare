@@ -1,3 +1,9 @@
+"""
+This app uses the dash-bootstrap-components library.  The images in this version are hosted on github so it is not
+necessary to have the images in the assets folder.  To run locally, just copy and paste this file and run the app.
+"""
+
+
 from dash import Dash, html
 from dash_extensions import BeforeAfter
 import dash_bootstrap_components as dbc
@@ -20,7 +26,7 @@ app.title = "Webb-before-after"
 header = html.Div(
     [
         html.H2("James Webb Space Telescope", className="display-3"),
-        html.Div("First Images.  Compare before and after images of Hubble vs Webb."),
+        html.P("First Images.  Compare before and after images of Hubble vs Webb."),
         dbc.Button(
             [html.I(className="bi bi-book me-2"), "webbtelescope.org"],
             color="light",

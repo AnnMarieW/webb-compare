@@ -1,5 +1,5 @@
 """
-This is an example of a multi-page app made with `pages` that does not use the pages folder.
+This app uses `pages` to make a multi-page app. Since the layout of each page is simple, it does not use the pages folder.
 
 """
 
