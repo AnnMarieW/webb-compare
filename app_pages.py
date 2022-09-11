@@ -15,18 +15,53 @@ app = Dash(
     external_stylesheets=[dbc.themes.CYBORG, dbc.icons.BOOTSTRAP],
 )
 
+header = html.Div(
+    [
+        html.H2("James Webb Space Telescope", className="display-3"),
+        html.Div("First Images.  Compare before and after images of Hubble vs Webb."),
+        dbc.Button(
+            [html.I(className="bi bi-book me-2"), "webbtelescope.org"],
+            color="light",
+            className="text-white-50",
+            href="https://webbtelescope.org/news/first-images/gallery",
+        ),
+        dbc.Button(
+            [html.I(className="bi bi-github me-2"), "source code"],
+            color="light",
+            className="ms-2 text-white-50",
+            href="https://github.com/AnnMarieW/webb-compare",
+            title="Make an app like this with ~40 lines of Python using Plotly Dash",
+        ),
+    ],
+)
 
-def make_before_after(before, after):
+
+def make_before_after(after, before):
     return html.Div(
         [
             html.Div(
                 [html.Div("Hubble"), html.Div("Webb")],
                 className="d-flex justify-content-between",
-                style={"width": 1000},
+                style={"maxWidth": 1000},
             ),
-            BeforeAfter(before=before, after=after, height=800, width=1000),
+            BeforeAfter(before={"src": before}, after={"src": after}),
         ],
         style={"marginTop": 50},
+    )
+
+
+def navbar():
+    return dbc.Nav(
+        [
+            dbc.NavLink(
+                html.Div(page["name"], className="ms-2"),
+                href=page["path"],
+                active="exact",
+            )
+            for page in dash.page_registry.values()
+        ],
+        pills=True,
+        className="mt-5",
     )
 
 
@@ -39,6 +74,14 @@ dash.register_page(
     layout=make_before_after(
         "/assets/webb_stephans_quintet.jpg", "/assets/stephans_quintet.jpg"
     ),
+)
+
+
+dash.register_page(
+    "webb_cartwheel",
+    name="Cartwheel Galaxy",
+    description=descr,
+    layout=make_before_after("/assets/webb_cartwheel.png", "/assets/cartwheel.png"),
 )
 
 dash.register_page(
@@ -64,41 +107,9 @@ dash.register_page(
     ),
 )
 
-header = html.Div(
-    [
-        html.H2("James Webb Space Telescope", className="display-3"),
-        html.Div("First Images.  Compare before and after images of Hubble vs Webb."),
-        dbc.Button(
-            [html.I(className="bi bi-book me-2"), "webbtelescope.org"],
-            color="light", className="text-white-50",
-            href="https://webbtelescope.org/news/first-images/gallery",
-
-        ),
-        dbc.Button(
-            [html.I(className="bi bi-github me-2"), "source code"],
-            color="light", className="ms-2 text-white-50",
-            href="https://github.com/AnnMarieW/webb-compare",
-        ),
-    ],
+app.layout = dbc.Container(
+    [header, navbar(), dash.page_container], style={"maxWidth": 1000}
 )
-
-
-def navbar():
-    return dbc.Nav(
-        [
-            dbc.NavLink(
-                html.Div(page["name"], className="ms-2"),
-                href=page["path"],
-                active="exact",
-            )
-            for page in dash.page_registry.values()
-        ],
-        pills=True,
-        className="mt-5",
-    )
-
-
-app.layout = dbc.Container([header, navbar(), dash.page_container])
 
 if __name__ == "__main__":
     app.run_server(debug=True)

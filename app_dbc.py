@@ -1,6 +1,7 @@
 """
 This app uses the dash-bootstrap-components library.  The images in this version are hosted on github so it is not
-necessary to have the images in the assets folder.  To run locally, just copy and paste this file and run the app.
+necessary to have the images in the assets folder. This version runs much faster when deployed.
+ To run locally, just copy and paste this file and run the app.
 """
 
 
@@ -16,9 +17,8 @@ southern_nebula = "https://user-images.githubusercontent.com/72614349/179115666-
 webb_deep_field = "https://user-images.githubusercontent.com/72614349/179115668-2630e3e4-3a9f-4c88-9494-3412e606450a.jpg"
 webb_southern_nebula = "https://user-images.githubusercontent.com/72614349/179115670-ef5bc561-d957-4e88-82dc-53ca53541b04.jpg"
 webb_carina = "https://user-images.githubusercontent.com/72614349/179115673-15eaccb9-d17d-4667-84fb-e0a46fd444e8.jpg"
-article = "https://webbtelescope.org/news/first-images/gallery"
-github_amw = "https://github.com/AnnMarieW/webb-compare"
-
+webb_cartwheel = "https://user-images.githubusercontent.com/72614349/184414634-fbd08745-94b9-4de6-8bce-c3607d9fd8db.png"
+cartwheel = "https://user-images.githubusercontent.com/72614349/184414677-69e09ba2-9852-4dc7-9d3f-9024518dcd3c.png"
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG, dbc.icons.BOOTSTRAP])
 app.title = "Webb-before-after"
@@ -26,32 +26,33 @@ app.title = "Webb-before-after"
 header = html.Div(
     [
         html.H2("James Webb Space Telescope", className="display-3"),
-        html.P("First Images.  Compare before and after images of Hubble vs Webb."),
+        html.Div("First Images.  Compare before and after images of Hubble vs Webb."),
         dbc.Button(
             [html.I(className="bi bi-book me-2"), "webbtelescope.org"],
             color="light",
-            href=article,
             className="text-white-50",
+            href="https://webbtelescope.org/news/first-images/gallery",
         ),
         dbc.Button(
             [html.I(className="bi bi-github me-2"), "source code"],
             color="light",
             className="ms-2 text-white-50",
-            href=github_amw,
+            href="https://github.com/AnnMarieW/webb-compare",
+            title="Make an app like this with ~40 lines of Python using Plotly Dash",
         ),
     ],
 )
 
 
-def make_before_after(before, after):
+def make_before_after(after, before):
     return html.Div(
         [
             html.Div(
                 [html.Div("Hubble"), html.Div("Webb")],
                 className="d-flex justify-content-between",
-                style={"width": 1000},
+                style={"maxWidth": 1000},
             ),
-            BeforeAfter(before=before, after=after, height=800, width=1000),
+            BeforeAfter(before={"src": before}, after={"src": after}),
         ],
         style={"marginTop": 50},
     )
@@ -59,15 +60,25 @@ def make_before_after(before, after):
 
 tabs = dbc.Tabs(
     [
-        dbc.Tab(make_before_after(webb_deep_field,deep_field), label="Galaxy Cluster SMACS 0723"),
-        dbc.Tab(make_before_after(webb_stephans_quintet, stephans_quintet), label="Stephans Quintet"),
+        dbc.Tab(
+            make_before_after(webb_deep_field, deep_field),
+            label="Galaxy Cluster SMACS 0723",
+        ),
+        dbc.Tab(make_before_after(webb_cartwheel, cartwheel), label="Cartwheel Galaxy"),
+        dbc.Tab(
+            make_before_after(webb_stephans_quintet, stephans_quintet),
+            label="Stephans Quintet",
+        ),
         dbc.Tab(make_before_after(webb_carina, carina), label="Carina Nebula"),
-        dbc.Tab(make_before_after(webb_southern_nebula, southern_nebula), label="Southern Ring Nebula"),
+        dbc.Tab(
+            make_before_after(webb_southern_nebula, southern_nebula),
+            label="Southern Ring Nebula",
+        ),
     ],
     className="mt-5",
 )
 
-app.layout = dbc.Container([header, tabs])
+app.layout = dbc.Container([header, tabs], style={"maxWidth": 1000})
 
 if __name__ == "__main__":
     app.run_server(debug=True)

@@ -2,6 +2,6 @@ dash>=2.5.1
 dash-bootstrap-components>=1.1.0
 dash-mantine-components>=0.10.1
 dash-iconify>=0.1.2
-dash-extensions>=0.1.5
+dash-extensions>=0.1.6
 
 
