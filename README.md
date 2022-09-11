@@ -1,6 +1,6 @@
 # Dash Webb Compare
 
-See the app live at https://dash-webb-compare.herokuapp.com/
+## See the app live at https://jwt.pythonanywhere.com
 
 __You can make an app like this in ~40 lines of code!__
 
@@ -40,8 +40,12 @@ For more information on multi-page dash apps, see the [Plotly Dash docs](https:/
 
 ### Credits
 
-This app was deployed using [dash-tools](https://github.com/andrew-hossack/dash-tools) DashTools is an open-source 
+This app was deployed to Heroku using [dash-tools](https://github.com/andrew-hossack/dash-tools) DashTools is an open-source 
 command line toolchain for Plotly Dash that makes creating and deploying dash projects to Heroku intuitive and easy. Thanks @andrew-hossack for providing such an awesome tool.  It truly makes deploying a Dash app a piece of cake.  :cake:
+
+Note:  After November 28, 2022, the [Heroku webb-compare site](https://dash-webb-compare.herokuapp.com/) will not work since the Heroku free tier is ending.
+Please see it live at https://jwt.pythonanywhere.com
+
 
 This project was inspired by [WebbCompare](https://github.com/JohnEdChristensen/WebbCompare) and all the before and after images
 are sourced from that project.  Thanks @JohnEdChristensen
